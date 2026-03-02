@@ -1,0 +1,42 @@
+# ─── Python ───────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# ─── Entornos virtuales ───────────────────────
+.venv/
+venv/
+env/
+ENV/
+.env
+
+# ─── pytest ───────────────────────────────────
+.pytest_cache/
+.cache/
+*.pytest_cache
+
+# ─── Cobertura de código ──────────────────────
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+
+# ─── IDEs ─────────────────────────────────────
+.idea/
+*.swp
+*.swo
+
+# .vscode/ NO está ignorado a propósito:
+# compartimos la configuración de VSCode con el equipo.
+
+# ─── Sistema operativo ────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Distribución / empaquetado ───────────────
+dist/
+build/
+*.egg-info/
