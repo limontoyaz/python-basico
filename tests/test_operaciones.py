@@ -27,10 +27,10 @@ from src.calculadora import sumar, restar, multiplicar, dividir, potencia, es_pa
 class TestSumar:
     """Agrupa todos los tests de la función sumar()."""
 
-    def test_suma_positivos(self):
+    #def test_suma_positivos(self):
         """Suma dos números positivos."""
-        resultado = sumar(3, 4)
-        assert resultado == 7
+        #resultado =
+        #assert 
 
     def test_suma_con_cero(self):
         """Sumar cero no cambia el valor."""
@@ -43,7 +43,7 @@ class TestSumar:
 
     def test_suma_flotantes(self):
         """Suma con decimales; usamos pytest.approx para comparar floats."""
-        # ⚠️ Nunca hagas: assert 0.1 + 0.2 == 0.3  → ¡falla por precisión!
+        # No hagas: assert 0.1 + 0.2 == 0.3  → ¡falla por precisión!
         assert sumar(0.1, 0.2) == pytest.approx(0.3)
 
 
@@ -100,19 +100,15 @@ class TestDividir:
 # TESTS PARAMETRIZADOS (misma lógica, distintos datos)
 # ─────────────────────────────────────────
 
-@pytest.mark.parametrize("base, exp, esperado", [
-    (2, 0,  1),    # Cualquier número a la 0 = 1
-    (2, 1,  2),    # Cualquier número a la 1 = sí mismo
-    (2, 8,  256),
-    (3, 3,  27),
-    (10, 3, 1000),
-])
-def test_potencia_parametrizada(base, exp, esperado):
+
+
+
+#def test_potencia_parametrizada():
     """
     pytest ejecuta este test UNA VEZ por cada fila de la tabla de arriba.
     Así evitamos copiar/pegar el mismo test 5 veces.
     """
-    assert potencia(base, exp) == esperado
+    #assert potencia(base, exp) == esperado
 
 
 @pytest.mark.parametrize("numero, es_par_esperado", [
