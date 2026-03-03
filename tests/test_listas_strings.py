@@ -6,7 +6,6 @@ Tests para funciones que trabajan con listas y strings.
 Nuevos conceptos de pytest que verás aquí:
 - Fixtures          → datos compartidos entre tests
 - conftest.py       → fixtures globales (ver ../conftest.py)
-- Marks             → etiquetar tests (skip, xfail, custom)
 """
 
 import pytest
@@ -17,18 +16,18 @@ from src.calculadora import maximo, promedio, saludar, contar_vocales, invertir_
 # FIXTURE LOCAL (disponible solo en este archivo)
 # ─────────────────────────────────────────
 
-@pytest.fixture
-def lista_numeros():
+
+#def lista_numeros():
     """
     Un fixture es una función que prepara datos para los tests.
     pytest la ejecuta automáticamente cuando un test la pide como parámetro.
     """
-    return [5, 3, 8, 1, 9, 2, 7]
+    
 
 
-@pytest.fixture
-def lista_con_negativos():
-    return [-10, -3, -7, -1, -5]
+
+#def lista_con_negativos():
+    
 
 
 # ─────────────────────────────────────────
@@ -36,9 +35,7 @@ def lista_con_negativos():
 # ─────────────────────────────────────────
 
 class TestMaximo:
-    def test_maximo_lista_normal(self, lista_numeros):
-        """Recibe el fixture como parámetro → pytest lo inyecta solo."""
-        assert maximo(lista_numeros) == 9
+    #Función para crequear maximo lista
 
     def test_maximo_lista_negativos(self, lista_con_negativos):
         assert maximo(lista_con_negativos) == -1
@@ -110,12 +107,10 @@ class TestContarVocales:
         """Las vocales con tilde también cuentan."""
         assert contar_vocales("Programación") == 5  # o, a, a, i, ó
 
-    @pytest.mark.parametrize("texto, esperado", [
-        ("Python",       1),   # y
-        ("banana",       3),   # a, a, a
-        ("El cielo",     4),   # E, i, e, o
-        ("123456",       0),   # solo dígitos
-    ])
+#### Test parametrizados
+
+
+    
     def test_vocales_parametrizado(self, texto, esperado):
         assert contar_vocales(texto) == esperado
 
@@ -141,23 +136,3 @@ class TestInvertirTexto:
         """Invertir dos veces debe dar el texto original."""
         original = "¡Aprendiendo pytest!"
         assert invertir_texto(invertir_texto(original)) == original
-
-
-# ─────────────────────────────────────────
-# MARKS ESPECIALES
-# ─────────────────────────────────────────
-
-@pytest.mark.skip(reason="Funcionalidad aún no implementada — ejemplo de skip")
-def test_ejemplo_skip():
-    """Este test se omite siempre. Útil cuando algo está en desarrollo."""
-    assert False
-
-
-@pytest.mark.xfail(reason="Se espera que falle — ejemplo de xfail")
-def test_ejemplo_xfail():
-    """
-    xfail = 'expected failure'.
-    Si falla → XFAIL (ok, esperado).
-    Si pasa  → XPASS (sorpresa, revisar).
-    """
-    assert 1 == 2
