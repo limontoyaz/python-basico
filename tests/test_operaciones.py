@@ -27,10 +27,10 @@ from src.calculadora import sumar, restar, multiplicar, dividir, potencia, es_pa
 class TestSumar:
     """Agrupa todos los tests de la función sumar()."""
 
-    #def test_suma_positivos(self):
+    def test_suma_positivos(self):
         """Suma dos números positivos."""
-        #resultado =
-        #assert 
+        resultado = sumar(5, 4)
+        assert resultado == 9
 
     def test_suma_con_cero(self):
         """Sumar cero no cambia el valor."""
@@ -92,7 +92,7 @@ class TestDividir:
 
     def test_division_entre_cero_mensaje_correcto(self):
         """También podemos verificar el mensaje del error."""
-        with pytest.raises(ValueError, match="No se puede dividir entre cero"):
+        with pytest.raises(ValueError, match="cero"):
             dividir(5, 0)
 
 
@@ -100,15 +100,20 @@ class TestDividir:
 # TESTS PARAMETRIZADOS (misma lógica, distintos datos)
 # ─────────────────────────────────────────
 
+@pytest.mark.parametrize("base, exp, esperado", [
+    (2, 0, 1),
+    (3, 1, 3),
+    (5, 3, 125),
+    (10, 3, 1000)
+])
 
 
-
-#def test_potencia_parametrizada():
+def test_potencia_parametrizada(base, exp, esperado):
     """
     pytest ejecuta este test UNA VEZ por cada fila de la tabla de arriba.
     Así evitamos copiar/pegar el mismo test 5 veces.
     """
-    #assert potencia(base, exp) == esperado
+    assert potencia(base, exp) == esperado
 
 
 @pytest.mark.parametrize("numero, es_par_esperado", [

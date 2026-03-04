@@ -11,7 +11,7 @@ import pytest
 
 
 @pytest.fixture(scope="session")
-def numeros_pequeños():
+def numeros_pequenios():
     """
     scope="session" → pytest crea esta fixture UNA SOLA VEZ
     para toda la sesión de tests (más eficiente que recrearla cada vez).
